@@ -44,31 +44,32 @@ In this project:
     README.md                   # This file
 
     5-UML Diagram  
-    +-------------------+
-    |  PaymentContext   |
-    +-------------------+
-    | - strategy:       |
-    |   PaymentStrategy |
-    +-------------------+
-    | + setStrategy()   |
-    | + processPayment()|
-    +-------------------+
-          ▲
-          |
-          |
-    +-------------------+
-    |  PaymentStrategy  |
-    +-------------------+
-    | + pay(amount):    |
-    |   string          |
-    +-------------------+
-          ▲
-          |
-+------+-------+-------+-------+-------+
-|              |       |       |       |
-+---------+  +---------+  +---------+  +------------------+
-|StripeStr|  |PaypalStr|  |CryptoStr|  |BankTransferStr   |
-+---------+  +---------+  +---------+  +------------------+
+                    +-------------------+
+                     |  PaymentContext   |
+                     +-------------------+
+                     | - strategy:       |
+                     |   PaymentStrategy |
+                     +-------------------+
+                     | + setStrategy()   |
+                     | + processPayment()|
+                     +-------------------+
+                             ▲
+                             |
+                             |
+               +-------------------------+
+               |  PaymentStrategy        |
+               +-------------------------+
+               | + pay(amount): string   |
+               +-------------------------+
+                    ▲           ▲           ▲            ▲
+                    |            |            |            |
+         +----------------+ +----------------+ +----------------+ +---------------------+
+         | StripeStrategy | | PaypalStrategy | | CryptoStrategy | | BankTransferStrategy |
+         +----------------+ +----------------+ +----------------+ +---------------------+
+         | + pay(amount): | | + pay(amount): | | + pay(amount): | | + pay(amount):       |
+         |   string       | |   string       | |   string       | |   string             |
+         +----------------+ +----------------+ +----------------+ +---------------------+
+
 
 6-Project Setup
  1. clone 
