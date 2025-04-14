@@ -31,6 +31,20 @@ This code simulates a pizza restaurant that uses different software patterns to:
 - **Simple terms**: There should only be one head chef managing the kitchen
 - **Example**: `KitchenManager.getInstance()` always returns the same kitchen manager
 
+### 5. Builder Pattern (`/builders`)
+- **What it does**: Lets you construct complex pizzas step-by-step
+- **Simple terms**: Like ordering a custom pizza where you specify each detail
+- **Example**: 
+```typescript
+const pizza = new CustomPizzaBuilder()
+  .setName('My Special Pizza')
+  .setSize('large')
+  .addTopping('pepperoni')
+  .addTopping('mushrooms')
+  .setCrust('thin')
+  .build();
+```
+
 ## How to Run
 1. Install Bun (if you haven't):
 ```bash
@@ -52,7 +66,7 @@ When you run the program, you'll see:
 ...
 ```
 
-## 🤔 Why Use Design Patterns?
+##  Why Use Design Patterns?
 - Makes code easier to understand and maintain
 - Solves common programming problems
 - Helps avoid reinventing the wheel
@@ -67,4 +81,4 @@ src/
 └── singletons/          # Kitchen management
 ```
 
-Happy coding! 🍕👨‍💻
+Happy coding! 👨‍💻
