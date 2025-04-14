@@ -1,92 +1,70 @@
-1. Introduction  
+# Pizzaverse: Design Patterns Demo
 
-Welcome to this repository! This project demonstrates the Strategy Design Pattern  using Bun  as the runtime and TypeScript  for type safety. The goal is to help you understand how to implement and use design patterns in modern JavaScript/TypeScript projects. 
+This project demonstrates common software design patterns using a pizza restaurant simulation.
 
-2. What is the Strategy Design Pattern?  
+## 🍕 What's This About?
+This code simulates a pizza restaurant that uses different software patterns to:
+- Create pizzas
+- Manage orders
+- Track inventory
+- Serve customers
 
-The Strategy Pattern is a behavioral design pattern that enables selecting an algorithm's behavior at runtime. Instead of hardcoding different behaviors into a single class, the Strategy Pattern separates them into interchangeable classes. if you didn`t understand anything we're comming with example.
+## 🧩 Design Patterns Explained
 
-Imagine a navigation app (like Google Maps). It can suggest different strategies to get to a destination:
+### 1. Factory Pattern (`/factories`)
+- **What it does**: Creates different types of pizzas (like a pizza factory)
+- **Simple terms**: Think of it like a pizza menu - you ask for "cheese pizza" and get exactly that
+- **Example in code**: `PizzaFactory.create("cheese")` makes a cheese pizza
 
-    🚗 By car
+### 2. Abstract Factory Pattern (`/abstract-factories`)
+- **What it does**: Creates complete meal combos (pizza + side + drink)
+- **Simple terms**: Like a combo meal at a restaurant - you get everything together
+- **Example**: `MealComboFactory.create("italian")` gives you Margherita pizza + garlic bread + soda
 
-    🚶‍♂️ On foot
+### 3. Prototype Pattern (`/prototypes`)
+- **What it does**: Lets you clone existing pizzas to make new ones
+- **Simple terms**: Like photocopying your favorite pizza order
+- **Example**: `pizzaRegistry.get("margherita").clone()` makes a copy of a Margherita pizza
 
-    🚴‍♂️ By bike
+### 4. Singleton Pattern (`/singletons`)
+- **What it does**: Ensures there's only one kitchen manager in the restaurant
+- **Simple terms**: There should only be one head chef managing the kitchen
+- **Example**: `KitchenManager.getInstance()` always returns the same kitchen manager
 
-    🚆 By public transport
+## How to Run
+1. Install Bun (if you haven't):
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+2. Run the demo:
+```bash
+bun src/index.ts
+```
+3. Run tests
+```bash
+bun test
+```
+## 📝 Sample Output
+When you run the program, you'll see:
+```
+🍽️ Welcome to Pizzaverse!
+🧀 Baking medium Cheese Pizza with cheese
+...
+```
 
-You (the app user) choose which strategy to use, but the core logic of the app (displaying the route, calculating ETA, etc.) stays the same.
+## 🤔 Why Use Design Patterns?
+- Makes code easier to understand and maintain
+- Solves common programming problems
+- Helps avoid reinventing the wheel
 
-In this project: 
+## 📂 Project Structure
+```
+src/
+├── abstract-factories/  # Meal combos
+├── builders/            # Custom pizzas
+├── factories/           # Pizza creation
+├── prototypes/          # Pizza cloning
+└── singletons/          # Kitchen management
+```
 
-    PaymentStrategy is the interface defining the common behavior (pay method).
-    StripeStrategy, PaypalStrategy, CryptoStrategy and BankTransferStrategy are concrete implementations of the PaymentStrategy.
-    PaymentContext uses a strategy to process payments dynamically.
-
-    3. Why Use the Strategy Pattern?  
-
-    Flexibility : You can change behaviors without modifying existing code.
-    Open/Closed Principle : Easily add new strategies without breaking existing ones.
-    Single Responsibility : Each strategy class focuses on one specific behavior.
-     
-    4. Project Structure  
-    src/
-    ├── PaymentContext.ts       # Context class that uses a payment strategy
-    ├── strategies/
-    │   ├── PaymentStrategy.ts  # Interface for payment strategies
-    │   ├── StripeStrategy.ts   # Concrete strategy for Stripe payments
-    │   ├── PaypalStrategy.ts   # Concrete strategy for PayPal payments
-    │   └── CryptoStrategy.ts   # Concrete strategy for Crypto payments
-    │   └── BankTransferStrategy.ts   # Concrete strategy for Bank Transfer payments
-    tests/
-    └── PaymentContext.test.ts  # Unit tests for the PaymentContext
-    README.md                   # This file
-
-    5-UML Diagram  
-                    +-------------------+
-                     |  PaymentContext   |
-                     +-------------------+
-                     | - strategy:       |
-                     |   PaymentStrategy |
-                     +-------------------+
-                     | + setStrategy()   |
-                     | + processPayment()|
-                     +-------------------+
-                             ▲
-                             |
-                             |
-               +-------------------------+
-               |  PaymentStrategy        |
-               +-------------------------+
-               | + pay(amount): string   | <-----------------------|
-               +-------------------------+ <----------|            |
-                    ▲            ▲                    |            |
-                    |            |                    |            |
-         +----------------+ +----------------+ +----------------+ +---------------------+
-         | StripeStrategy | | PaypalStrategy | | CryptoStrategy | | BankTransferStrategy |
-         +----------------+ +----------------+ +----------------+ +---------------------+
-         | + pay(amount): | | + pay(amount): | | + pay(amount): | | + pay(amount):       |
-         |   string       | |   string       | |   string       | |   string             |
-         +----------------+ +----------------+ +----------------+ +---------------------+
-
-
-6-Project Setup
- 1. clone 
-  ```bash
-   git clone https://github.com/Aliexe-code/DesignPatterns-trash.git
-   cd DesignPatterns-trash
-   ```
-   2. install dependencies
-   ```bash
-   bun install
-   ```
-   3. run tests
-   ```bash
-   bun test
-   ```
-   4. run application
-   ```bash
-   bun start    
-   ```
-   
+Happy coding! 🍕👨‍💻
